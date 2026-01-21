@@ -1,0 +1,203 @@
+* {
+  box-sizing: border-box;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f6f7f8;
+}
+
+/* PAGE */
+.bp-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 32px;
+}
+
+/* HEADER */
+.bp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 28px;
+}
+
+.bp-header h1 {
+  font-size: 40px;
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.bp-header p {
+  margin-top: 6px;
+  color: #6b7280;
+}
+
+.create-btn {
+  background: #137fec;
+  color: #fff;
+  border: none;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(19,127,236,0.25);
+  transition: all 0.2s ease;
+}
+
+.create-btn:hover {
+  transform: translateY(-1px);
+  background: #0f6fd1;
+}
+
+/* FILTERS */
+.bp-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  background: white;
+  padding: 6px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.tabs button {
+  border: none;
+  background: transparent;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.tabs .active {
+  background: #e8f1ff;
+  color: #137fec;
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  color: #6b7280;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* TABLE */
+.bp-table {
+  background: white;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f9fafb;
+}
+
+th {
+  text-align: left;
+  padding: 16px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+td {
+  padding: 18px 16px;
+  vertical-align: middle;
+}
+
+tr {
+  border-top: 1px solid #f1f5f9;
+  transition: background 0.15s ease;
+}
+
+tr:hover {
+  background: #f9fbff;
+}
+
+/* NAME CELL */
+.name-cell {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background: #eef2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 18px;
+}
+
+.title {
+  font-weight: 700;
+}
+
+.sub {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 3px;
+}
+
+/* FIELD BADGE */
+.field-pill {
+  background: #f1f5f9;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* ACTIONS */
+.right {
+  text-align: right;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.use-blueprint {
+  background: #e8f1ff;
+  color: #137fec;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.use-blueprint:hover {
+  background: #137fec;
+  color: white;
+}
+
+.date {
+  color: #6b7280;
+}
