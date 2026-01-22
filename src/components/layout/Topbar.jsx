@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import "./topbar.css";
 
-export default function Topbar() {
+export default function Topbar({ onMenuClick }) {
   const location = useLocation();
 
   const isSearchPage =
@@ -18,6 +18,11 @@ export default function Topbar() {
     <header className="topbar">
       {/* LEFT */}
       <div className="top-left">
+        {/* ☰ hamburger (mobile only) */}
+        <button className="menu-btn" onClick={onMenuClick}>
+          ☰
+        </button>
+
         <span className="logo-icon">📄</span>
         <span className="logo-text">Contractly</span>
       </div>
