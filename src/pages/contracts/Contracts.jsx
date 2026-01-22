@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Contracts.css";
 
 import { contractsData } from "../../data/contractsData";
-import ContractCard from "../../components/ContractCard";
+import ContractCard from "../../components/contractsCompo/ContractCard";
 
 export default function Contracts() {
   const [selectedContract, setSelectedContract] = useState(null);
