@@ -1,9 +1,12 @@
 import "./Blueprints.css";
+import { useNavigate } from "react-router-dom";
 
 import { blueprintsData } from "../../data/blueprintsData";
 import BlueprintsTable from "../../components/blueprintsCompo/BlueprintsTable";
 
 export default function Blueprints() {
+  const navigate = useNavigate();
+
   return (
     <div className="bp-page">
       {/* HEADER */}
@@ -13,7 +16,11 @@ export default function Blueprints() {
           <p>Manage and create contract templates for your organization.</p>
         </div>
 
-        <button className="create-btn">
+        {/* 👉 CREATE BLUEPRINT */}
+        <button
+          className="create-btn"
+          onClick={() => navigate("/blueprints/new")}
+        >
           + Create New Blueprint
         </button>
       </div>
@@ -29,8 +36,11 @@ export default function Blueprints() {
         <button className="filter-btn">⚙ Filters</button>
       </div>
 
-      {/* TABLE (COMPONENT) */}
-      <BlueprintsTable data={blueprintsData} />
+      {/* TABLE */}
+      <BlueprintsTable
+        data={blueprintsData}
+        onUse={(id) => navigate("/contracts/new")}
+      />
     </div>
   );
 }

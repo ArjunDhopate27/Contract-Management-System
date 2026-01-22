@@ -1,6 +1,63 @@
+import { useState } from "react";
 import "./CreateBlueprint.css";
 
 export default function CreateBlueprint() {
+  //  fixed + initial fields
+  const [fields, setFields] = useState([
+    {
+      id: "name",
+      type: "Short Text",
+      label: "Full Name",
+      x: 0,
+      y: 0,
+      fixed: true,
+    },
+    {
+      id: "signature",
+      type: "Signature",
+      label: "Employee Signature",
+      x: 120,
+      y: 450,
+      fixed: true,
+    },
+  ]);
+
+  // ➕ Add new field BEFORE signature
+  const addField = () => {
+    const newField = {
+      id: Date.now(),
+      type: "Short Text",
+      label: "New Field",
+      x: 0,
+      y: 0,
+      fixed: false,
+    };
+
+    setFields((prev) => {
+      const signatureIndex = prev.findIndex(
+        (f) => f.type === "Signature"
+      );
+
+      const updated = [...prev];
+      updated.splice(signatureIndex, 0, newField);
+      return updated;
+    });
+  };
+
+  // ❌ delete (only non-fixed)
+  const deleteField = (id) => {
+    setFields((prev) => prev.filter((f) => f.id !== id));
+  };
+
+  // ✏️ update field
+  const updateField = (id, key, value) => {
+    setFields((prev) =>
+      prev.map((f) =>
+        f.id === id ? { ...f, [key]: value } : f
+      )
+    );
+  };
+
   return (
     <div className="cb-page">
       {/* TOP BAR */}
@@ -27,75 +84,82 @@ export default function CreateBlueprint() {
         <input placeholder="e.g. Standard Employment Agreement" />
       </div>
 
-      {/* DOCUMENT FIELDS */}
+      {/* DOCUMENT FIELDS HEADER */}
       <div className="fields-header">
         <div>
           <h3>Document Fields</h3>
           <p>Configure the dynamic fields for this blueprint.</p>
         </div>
 
-        <button className="add-btn">+ Add Field</button>
+        <button className="add-btn" onClick={addField}>
+          + Add Field
+        </button>
       </div>
 
-      {/* FIELD ROW 1 */}
-      <div className="field-row">
-        <div>
-          <label>Field Type</label>
-          <select>
-            <option>Short Text</option>
-            <option>Date</option>
-            <option>Email</option>
-            <option>Signature</option>
-          </select>
+      {/* FIELDS */}
+      {fields.map((field) => (
+        <div className="field-row" key={field.id}>
+          <div>
+            <label>Field Type</label>
+            <select
+              value={field.type}
+              disabled={field.fixed}
+              onChange={(e) =>
+                updateField(field.id, "type", e.target.value)
+              }
+            >
+              <option>Short Text</option>
+              <option>Date</option>
+              <option>Email</option>
+              <option>Signature</option>
+            </select>
+          </div>
+
+          <div className="grow">
+            <label>Field Label</label>
+            <input
+              value={field.label}
+              onChange={(e) =>
+                updateField(field.id, "label", e.target.value)
+              }
+            />
+          </div>
+
+          <div>
+            <label>X Coord</label>
+            <input
+              type="number"
+              value={field.x}
+              onChange={(e) =>
+                updateField(field.id, "x", e.target.value)
+              }
+            />
+          </div>
+
+          <div>
+            <label>Y Coord</label>
+            <input
+              type="number"
+              value={field.y}
+              onChange={(e) =>
+                updateField(field.id, "y", e.target.value)
+              }
+            />
+          </div>
+
+          {!field.fixed && (
+            <button
+              className="delete"
+              onClick={() => deleteField(field.id)}
+            >
+              🗑
+            </button>
+          )}
         </div>
+      ))}
 
-        <div className="grow">
-          <label>Field Label</label>
-          <input placeholder="Full Name" />
-        </div>
-
-        <div>
-          <label>X Coord</label>
-          <input type="number" placeholder="0" />
-        </div>
-
-        <div>
-          <label>Y Coord</label>
-          <input type="number" placeholder="0" />
-        </div>
-
-        <button className="delete">🗑</button>
-      </div>
-
-      {/* FIELD ROW 2 */}
-      <div className="field-row">
-        <div>
-          <label>Field Type</label>
-          <select>
-            <option>Signature</option>
-          </select>
-        </div>
-
-        <div className="grow">
-          <label>Field Label</label>
-          <input placeholder="Employee Signature" />
-        </div>
-
-        <div>
-          <label>X Coord</label>
-          <input type="number" value="120" />
-        </div>
-
-        <div>
-          <label>Y Coord</label>
-          <input type="number" value="450" />
-        </div>
-
-        <button className="delete">🗑</button>
-      </div>
-
-      {/* ADD MORE */}
-      <div className="add-more">
+      {/* 💙 PRETTY ADD MORE (ALIVE) */}
+      <div className="add-more" onClick={addField}>
         + Add another field to this blueprint
       </div>
 
@@ -111,4 +175,3 @@ export default function CreateBlueprint() {
     </div>
   );
 }
-

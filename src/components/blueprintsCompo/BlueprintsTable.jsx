@@ -1,4 +1,4 @@
-export default function BlueprintsTable({ data }) {
+export default function BlueprintsTable({ data, onUse }) {
   return (
     <div className="bp-table">
       <table>
@@ -32,9 +32,15 @@ export default function BlueprintsTable({ data }) {
 
               <td className="right">
                 <button className="icon-btn">👁</button>
-                <button className="use-blueprint">
+
+                {/* 👉 USE TEMPLATE */}
+                <button
+                  className="use-blueprint"
+                  onClick={() => onUse(b.id)}
+                >
                   Use Blueprint
                 </button>
+
                 <button className="icon-btn">⋮</button>
               </td>
             </tr>
